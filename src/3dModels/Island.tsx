@@ -1,7 +1,9 @@
-// import * as THREE from 'three'
+'use client'
+import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { Mesh } from 'three'
 
 import { a } from '@react-spring/three'
 
@@ -39,11 +41,11 @@ type GLTFResult = GLTF & {
 }
 
 const IslandModel = (props: JSX.IntrinsicElements['group']) => {
-    const { nodes, materials } = useGLTF('/island.glb') as GLTFResult
-    const islandRef = useRef<Mesh>()
+    const { nodes, materials } = useGLTF('/models/island.glb') as GLTFResult
+    const meshRef = useRef<THREE.Group<THREE.Object3DEventMap>>(null!)
 
     return (
-        <a.group {...props} ref={islandRef}>
+        <a.group {...props} ref={meshRef}>
             <group rotation={[-Math.PI / 2, 0, 0]} scale={3.387}>
                 <group rotation={[Math.PI / 2, 0, 0]}>
                     <group position={[0.06, 0.11, -0.208]}>
@@ -137,6 +139,6 @@ const IslandModel = (props: JSX.IntrinsicElements['group']) => {
     )
 }
 
-useGLTF.preload('/island.glb')
+useGLTF.preload('/models/island.glb')
 
 export default IslandModel
