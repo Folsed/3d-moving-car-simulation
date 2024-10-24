@@ -6,6 +6,7 @@ import { GLTF } from 'three-stdlib'
 import { Mesh } from 'three'
 
 import { a } from '@react-spring/three'
+import { Euler, Vector3 } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -40,7 +41,13 @@ type GLTFResult = GLTF & {
     }
 }
 
-const IslandModel = (props: JSX.IntrinsicElements['group']) => {
+interface ModelProps {
+    scale: Vector3
+    position: Vector3
+    rotation: Euler
+}
+
+const IslandModel: React.FC<ModelProps> = ({ ...props }) => {
     const { nodes, materials } = useGLTF('/models/island.glb') as GLTFResult
     const meshRef = useRef<THREE.Group<THREE.Object3DEventMap>>(null!)
 
