@@ -14,6 +14,7 @@ import Boxes from './Box'
 import {
     Bloom,
     ChromaticAberration,
+    DepthOfField,
     EffectComposer,
 } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
@@ -42,9 +43,6 @@ const CarShow = () => {
                         )}
                     </CubeCamera>
 
-                    <Rings />
-                    <Boxes />
-
                     <spotLight
                         color={[1, 0.25, 0.7]}
                         intensity={150}
@@ -66,9 +64,16 @@ const CarShow = () => {
                     />
 
                     <Ground />
+                    <Boxes />
+                    <Rings />
 
                     <EffectComposer>
-                        {/* <DepthOfField focusDistance={0.0035} focalLength={0.01} bokehScale={3} height={480} /> */}
+                        {/* <DepthOfField
+                            focusDistance={0.0035}
+                            focalLength={2}
+                            bokehScale={2}
+                            height={480}
+                        /> */}
                         <Bloom
                             blendFunction={BlendFunction.ADD}
                             intensity={1.3} // The bloom intensity.
