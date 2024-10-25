@@ -10,7 +10,7 @@ import { Suspense } from 'react'
 import Ground from './Ground'
 import Car from './Car'
 import Rings from './Rings'
-import Boxes from './Box'
+import Boxes from './Boxes'
 import {
     Bloom,
     ChromaticAberration,
@@ -19,13 +19,18 @@ import {
 } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import { Vector2 } from 'three'
+import FloatingGrid from './FloatingGrid'
 
 const CarShow = () => {
     return (
         <section className='relative h-screen w-full'>
             <Suspense fallback={null}>
                 <Canvas shadows>
-                    <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
+                    <OrbitControls
+                        target={[0, 0.35, 0]}
+                        maxPolarAngle={1.45}
+                        maxDistance={20}
+                    />
                     <PerspectiveCamera
                         makeDefault
                         fov={50}
@@ -64,16 +69,17 @@ const CarShow = () => {
                     />
 
                     <Ground />
+                    <FloatingGrid/>
                     <Boxes />
                     <Rings />
 
                     <EffectComposer>
-                        {/* <DepthOfField
+                        <DepthOfField
                             focusDistance={0.0035}
-                            focalLength={2}
-                            bokehScale={2}
+                            focalLength={5}
+                            bokehScale={1}
                             height={480}
-                        /> */}
+                        />
                         <Bloom
                             blendFunction={BlendFunction.ADD}
                             intensity={1.3} // The bloom intensity.
