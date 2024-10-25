@@ -1,10 +1,6 @@
 import Image from 'next/image'
 import bg from '../../public/background/home-background.png'
 
-export default function Home() {
-    return (
-        <div className='flex min-h-screen flex-col items-center justify-between relative'>
-            <Image src={bg} alt='background-image' className='w-full h-full object-cover object-center opacity-25'/>
-        </div>
-    )
+export default function HomePage() {
+    return <section className='relative h-screen w-full'></section>
 }
