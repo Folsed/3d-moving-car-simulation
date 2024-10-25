@@ -1,8 +1,16 @@
 'use client'
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import {
+    CubeCamera,
+    Environment,
+    OrbitControls,
+    PerspectiveCamera,
+} from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { Suspense } from 'react'
 import Ground from './Ground'
+import Car from './Car'
+import Rings from './Rings'
+import Boxes from './Box'
 
 const CarShow = () => {
     return (
@@ -17,6 +25,18 @@ const CarShow = () => {
                     />
 
                     <color args={[0, 0, 0]} attach='background' />
+
+                    <CubeCamera resolution={256} frames={Infinity}>
+                        {(texture) => (
+                            <>
+                                <Environment map={texture} />
+                                <Car />
+                            </>
+                        )}
+                    </CubeCamera>
+
+                    <Rings />
+                    <Boxes/>
 
                     <spotLight
                         color={[1, 0.25, 0.7]}
@@ -37,13 +57,8 @@ const CarShow = () => {
                         castShadow
                         shadow-bias={-0.0001}
                     />
-                    
-                    <Ground />
 
-                    {/* <mesh>
-                        <boxGeometry args={[1, 1, 1]} />
-                        <meshBasicMaterial color={'red'} />
-                    </mesh> */}
+                    <Ground />
                 </Canvas>
             </Suspense>
         </section>
