@@ -1,7 +1,7 @@
 'use client'
 import { MeshReflectorMaterial } from '@react-three/drei'
 import { sRGBEncoding } from '@react-three/drei/helpers/deprecated'
-import { useLoader } from '@react-three/fiber'
+import { useFrame, useLoader } from '@react-three/fiber'
 import { useEffect } from 'react'
 import { RepeatWrapping, SRGBColorSpace, TextureLoader, Vector2 } from 'three'
 
@@ -21,6 +21,12 @@ const Ground = () => {
         normal.colorSpace = SRGBColorSpace
         roughness.colorSpace = SRGBColorSpace
     }, [normal, roughness])
+
+    useFrame((state, delta) => {
+        let t = -state.clock.getElapsedTime() * 0.128
+        roughness.offset.set(0, t)
+        normal.offset.set(0, t)
+    })
 
     return (
         <mesh rotation-x={-Math.PI * 0.5} castShadow receiveShadow>

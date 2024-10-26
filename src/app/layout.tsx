@@ -22,8 +22,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en' className={roboto.variable}>
-            <body className='bg-background text-foreground'>
-                <Header />
+            <body className='bg-background text-foreground h-screen overflow-hidden'>
                 <CarShow />
                 <main>{children}</main>
             </body>
